@@ -3,6 +3,8 @@
 
 <PongGame>:
     ball: pong_ball
+    player1: player1
+    player2: player2
 
     canvas:
         Rectangle:
@@ -24,6 +26,17 @@
     PongBall:
         id: pong_ball
         center: self.parent.center
+    
+    Player:
+        id: player1
+        x: root.x
+        center_y: root.center_y
+    
+    Player:
+        id: player2
+        x: root.width - self.width
+        center_y: root.center_y
+        
 
 
 <PongBall>:
@@ -32,3 +45,10 @@
         Ellipse:
             pos: self.pos
             size: self.size
+
+<Player>:
+    size: 10, 100
+    canvas:
+        Rectangle:
+            size: self.size
+            pos: self.pos
