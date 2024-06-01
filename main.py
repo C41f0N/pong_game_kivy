@@ -22,12 +22,26 @@ class PongGame(Widget):
         self.player1.bounce_ball(self.ball)
         self.player2.bounce_ball(self.ball)
 
+   # went off to a side to score point?
+        if self.ball.x < self.x:
+            self.player2.score += 1
+            self.serve_ball()
+        if self.ball.right > self.width:
+            self.player1.score += 1
+            self.serve_ball()
 
         if self.ball.x < 0 or self.ball.right > self.width:
             self.ball.velocity_x *= -1
         
         if self.ball.y < 0 or self.ball.top > self.height:
             self.ball.velocity_y *= -1
+
+    def on_touch_move(self, touch):
+        if touch.x < self.width / 3:
+            self.player1.center_y = touch.y
+        if touch.x > self.width - self.width / 3:
+            self.player2.center_y = touch.y
+
 
 
 
